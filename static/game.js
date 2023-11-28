@@ -99,6 +99,7 @@ const player = new Player({
       
     }
     if(isdead){
+        gs = false
         location.reload()
     }
 
