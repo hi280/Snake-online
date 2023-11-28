@@ -10,10 +10,11 @@ class Player{
 }
 
 module.exports.getPlayers = (socket) =>{
-    socket.on("new player", ()=>{
+    socket.on("new player", (name)=>{
+        console.log("connected "+ name)
         players[socket.id] = new Player({
             id: socket.id,
-            name: "Player "+Object.keys(players).length,
+            name: name,
         })
     });
     socket.on("position",data=>{

@@ -1,12 +1,14 @@
-const socket = io()
-
+function start(name, color){
+  const socket = io()
+ console.log(color)
 const WINDOW_WIDTH = 1280;
 const WINDOW_HIGHT = 720;
 
 const canv = document.getElementById("canvas")
+//canv.style = "position: absolute; top: 50px; left: 10%"
 canv.width = WINDOW_WIDTH;
 canv.height = WINDOW_HIGHT;
-socket.emit("new player");
+socket.emit("new player", name);
 
 class Player{
     constructor(props){
@@ -20,7 +22,7 @@ class Player{
 document.addEventListener('keydown', changeDirection);
 const player = new Player({
     id: socket.id,
-    name: "You",
+    name: name,
 })
     var
         px = 600;
@@ -36,7 +38,7 @@ const player = new Player({
         tailSafeZone		= 20, // self eating protection for head zone (aka safeZone)
         cooldown			= false, // is key in cooldown mode
         score				= 0; // current score
-        color = rc()
+        color = color
 
 
   function loop(players)
@@ -126,12 +128,7 @@ const player = new Player({
   }
   }
   
-  
-  // random color generator (for debugging purpose or just 4fun)
-  function rc()
-  {
-    return '#' + ((~~(Math.random() * 255)).toString(16)) + ((~~(Math.random() * 255)).toString(16)) + ((~~(Math.random() * 255)).toString(16));
-  }
+
 
 socket.on("updateFood", foods =>{
     apples = foods
@@ -146,7 +143,6 @@ socket.on("state", (players) =>{
     ctx.fillStyle = "black";
     ctx.fillRect(0,0, WINDOW_WIDTH, WINDOW_HIGHT)
     ctx.closePath();
-    Players = players
     for(const id in players){
         if(id != socket.id){
             const player = players[id]
@@ -158,6 +154,7 @@ socket.on("state", (players) =>{
         socket.emit("position", player.trail);
         drawPlayer(ctx, player)
     }
+
 });
 
 function changeDirection(evt)
@@ -188,4 +185,5 @@ function changeDirection(evt)
 
   cooldown = true;
   setTimeout(function() {cooldown = false;}, 100);
+}
 }

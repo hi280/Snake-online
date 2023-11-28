@@ -1,11 +1,20 @@
+<!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
         <title>Snake multiplayer</title>
         <script src="/socket.io/socket.io.js"></script>
     </head>
     <body>
-        <canvas id = "canvas"></canvas>
+        <p style="text-align: center" id="All">
+            <label>Name</label>
+            <input type="text" placeholder="Enter your name" id="name" autocomplete="nickname" />>
+            <input type="color" id="color" autocomplete="skin color">
+        </p>
+        <p style="text-align: center"><button id="Start" onclick="gameStart()">Начать</button></p>
+        <p style="text-align: center"><canvas id = "canvas", align: center></canvas></p>
     </body>
     <script src="../static/drawPlayer.js"></script>
     <script src="../static/game.js"></script>
+    <script src="../static/menu.js"></script>
 </html>

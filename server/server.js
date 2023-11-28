@@ -36,7 +36,6 @@ io.on("connection", (socket)=>{
       }
     })
     io.sockets.emit("updateFood", apples);
-    console.log("conected " + socket.id)
 })
 
 const apples = []
