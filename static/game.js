@@ -188,3 +188,24 @@ function changeDirection(evt)
   setTimeout(function() {cooldown = false;}, 100);
 }
 }
+if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+  // true for mobile device
+  console.log("detect android")
+    document.getElementById("buttonsAndroid").removeAttribute("hidden")
+}
+function up(){
+  if( !(yv > 0) ) // top arrow
+    {xv = 0; yv = -speed;}
+}
+function left(){
+  if(!(xv > 0) ) // left arrow
+    {xv = -speed; yv = 0;}
+}
+function right(){
+  if(!(xv < 0) ) // right arrow
+    {xv = speed; yv = 0;}
+}
+function down(){
+  if(!(yv < 0) ) // down arrow
+    {xv = 0; yv = speed;}
+}
